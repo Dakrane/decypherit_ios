@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "498573818114",
+    "firebase_url": "https://decypher-it-abc14.firebaseio.com",
+    "project_id": "decypher-it-abc14",
+    "storage_bucket": "decypher-it-abc14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498573818114:android:bf37d953b3d0a0008f2a1b",
+        "android_client_info": {
+          "package_name": "com.foreignframe.decypherit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498573818114-eaa6cebjb7b7lofk1i7e1m75h8742aio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_uEh1Lf0_40SfPq3EQxDSSQAhW1yMCtA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498573818114-eaa6cebjb7b7lofk1i7e1m75h8742aio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
