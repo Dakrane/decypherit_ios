@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:decypherit/variables.dart';
 import 'package:decypherit/components/button.dart';
 import 'package:decypherit/components/text_mix.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:stop_watch_timer/stop_watch_timer.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:decypherit/variables.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 class GameScreen extends StatefulWidget {
   @override
@@ -183,7 +183,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'r';
                                 buttonColorR = mainColor;
                                 textColorR = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -196,7 +195,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 't';
                                 buttonColorT = mainColor;
                                 textColorT = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -209,7 +207,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'y';
                                 buttonColorY = mainColor;
                                 textColorY = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -222,7 +219,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'u';
                                 buttonColorU = mainColor;
                                 textColorU = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -235,7 +231,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'i';
                                 buttonColorI = mainColor;
                                 textColorI = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -248,7 +243,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'o';
                                 buttonColorO = mainColor;
                                 textColorO = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -261,7 +255,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'p';
                                 buttonColorP = mainColor;
                                 textColorP = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -284,7 +277,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'a';
                                 buttonColorA = mainColor;
                                 textColorA = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -297,7 +289,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 's';
                                 buttonColorS = mainColor;
                                 textColorS = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -310,7 +301,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'd';
                                 buttonColorD = mainColor;
                                 textColorD = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -323,7 +313,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'f';
                                 buttonColorF = mainColor;
                                 textColorF = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -336,7 +325,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'g';
                                 buttonColorG = mainColor;
                                 textColorG = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -349,7 +337,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'h';
                                 buttonColorH = mainColor;
                                 textColorH = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -362,7 +349,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'j';
                                 buttonColorJ = mainColor;
                                 textColorJ = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -375,7 +361,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'k';
                                 buttonColorK = mainColor;
                                 textColorK = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -388,7 +373,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'l';
                                 buttonColorL = mainColor;
                                 textColorL = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -414,7 +398,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'z';
                                 buttonColorZ = mainColor;
                                 textColorZ = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -427,7 +410,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'x';
                                 buttonColorX = mainColor;
                                 textColorX = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -440,7 +422,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'c';
                                 buttonColorC = mainColor;
                                 textColorC = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -453,7 +434,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'v';
                                 buttonColorV = mainColor;
                                 textColorV = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -466,7 +446,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'b';
                                 buttonColorB = mainColor;
                                 textColorB = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -479,7 +458,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'n';
                                 buttonColorN = mainColor;
                                 textColorN = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -492,7 +470,6 @@ class _GameScreenState extends State<GameScreen> {
                                 buttonInput = 'm';
                                 buttonColorM = mainColor;
                                 textColorM = accentColor;
-                                print(buttonInput);
                                 letterSwitch(buttonInput, context);
                               });
                             }),
@@ -524,7 +501,7 @@ _mixAlert(context) {
     ),
     title: "Take it easy.",
     desc:
-    "You can't make the game easier. This is the easiest difficulty. Mixing up the sentence...",
+        "You can't make the game easier. This is the easiest difficulty. Mixing up the sentence...",
     buttons: [
       DialogButton(
         child: Text(
@@ -596,7 +573,6 @@ void letterSwitch(buttonInput, context) {
   }
 
   displayedText = displayedLetters.join('');
-  print(displayedText);
 
   _saveMixedText();
 

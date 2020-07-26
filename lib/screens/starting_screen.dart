@@ -1,14 +1,12 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:decypherit/screens/rules_screen.dart';
 import 'package:decypherit/screens/settings_screen.dart';
-import 'package:decypherit/screens/user_challenge_screen.dart';
 import 'package:decypherit/variables.dart';
-import 'package:flutter/material.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:delayed_display/delayed_display.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:firebase_admob/firebase_admob.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+//import 'package:firebase_admob/firebase_admob.dart';
 
 class StartingScreen extends StatefulWidget {
   @override
@@ -20,7 +18,40 @@ class _StartingScreenState extends State<StartingScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
-    FirebaseAdMob.instance.initialize(appId: appID);
+    checkContinue();
+//    FirebaseAdMob.instance.initialize(appId: appID);
+  }
+
+//  static MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+//    keywords: <String>['flutterio', 'beautiful apps'],
+//    contentUrl: 'https://flutter.io',
+//    birthday: DateTime.now(),
+//    childDirected: false,
+//    designedForFamilies: false,
+//    gender: MobileAdGender.male, // or MobileAdGender.female, MobileAdGender.unknown
+//    testDevices: <String>[], // Android emulators are considered test devices
+//  );
+//
+//  BannerAd myBanner = BannerAd(
+//    // Replace the testAdUnitId with an ad unit id from the AdMob dash.
+//    // https://developers.google.com/admob/android/test-ads
+//    // https://developers.google.com/admob/ios/test-ads
+//    adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+//    size: AdSize.smartBanner,
+//    targetingInfo: targetingInfo,
+//    listener: (MobileAdEvent event) {
+//      print("BannerAd event is $event");
+//    },
+//  );
+
+  void checkContinue() {
+    if (displayedText == null) {
+      continueVisible = false;
+    } else if (displayedText == sourceText) {
+      continueVisible = false;
+    } else {
+      continueVisible = true;
+    }
   }
 
   @override
@@ -28,149 +59,128 @@ class _StartingScreenState extends State<StartingScreen> {
     return Scaffold(
       backgroundColor: mainColor,
       resizeToAvoidBottomPadding: false,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: DelayedDisplay(
-                    delay: Duration(milliseconds: 800),
-                    child: GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (context) => SingleChildScrollView(
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                      bottom: MediaQuery.of(context)
-                                          .viewInsets
-                                          .bottom),
-                                  child: RulesScreen(),
-                                )));
-                      },
-                      child: Icon(
-                        Icons.info,
-                        color: accentColor,
-                        size: 40.0,
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              flex: 3,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: DelayedDisplay(
+                      delay: Duration(milliseconds: 800),
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              builder: (context) => SingleChildScrollView(
+                                      child: Container(
+                                    padding: EdgeInsets.only(
+                                        bottom: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom),
+                                    child: RulesScreen(),
+                                  )));
+                        },
+                        child: Icon(
+                          Icons.info,
+                          color: accentColor,
+                          size: 40.0,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            flex: 14,
-            child: DelayedDisplay(
-              delay: Duration(milliseconds: 680),
-              child: Center(
-                child: TypewriterAnimatedTextKit(
-                  text: ['decypher it'],
-                  textStyle: TextStyle(
-                    color: accentColor,
-                    fontSize: 55.0,
-                    fontWeight: FontWeight.w900,
+            Expanded(
+              flex: 14,
+              child: DelayedDisplay(
+                delay: Duration(milliseconds: 680),
+                child: Center(
+                  child: TypewriterAnimatedTextKit(
+                    text: ['decypher it'],
+                    textStyle: TextStyle(
+                      color: accentColor,
+                      fontSize: 55.0,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Center(
-            child: DelayedDisplay(
-              delay: Duration(milliseconds: 550),
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MenuButton(
-                  buttonText: 'CONTINUE',
-                  buttonAction: () {
+            Visibility(
+              visible: continueVisible ? true : false,
+              child: Center(
+                child: DelayedDisplay(
+                  delay: Duration(milliseconds: 550),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: MenuButton(
+                      buttonText: 'CONTINUE',
+                      buttonAction: () {
 //                    _readContinue();
-                    if (displayedText == null) {
-                      _continueAlert(context);
-                    } else if (displayedText == sourceText) {
-                      _completedAlert(context);
-                    } else {
-                      Navigator.pushNamed(context, '/game');
-                    }
-                  },
+                        if (displayedText == null) {
+                          _continueAlert(context);
+                        } else if (displayedText == sourceText) {
+                          _completedAlert(context);
+                        } else {
+                          Navigator.pushNamed(context, '/game');
+                        }
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          Center(
-            child: DelayedDisplay(
-              delay: Duration(milliseconds: 420),
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MenuButton(
-                  buttonText: 'CHOOSE',
-                  buttonAction: () {
+            Center(
+              child: DelayedDisplay(
+                delay: Duration(milliseconds: 420),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: MenuButton(
+                    buttonText: 'PLAY',
+                    buttonAction: () {
 //                    Navigator.pushNam/ed(context, '/intro');
-                    Navigator.pushNamed(context, '/choose');
-                  },
+                      Navigator.pushNamed(context, '/choose');
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-          Center(
-            child: DelayedDisplay(
-              delay: Duration(milliseconds: 300),
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MenuButton(
-                  buttonText: 'CREATE',
-                  buttonAction: () {
-                    _userChallengeAlert(context);
-                  },
+            Center(
+              child: DelayedDisplay(
+                delay: Duration(milliseconds: 150),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: MenuButton(
+                    buttonText: 'SETTINGS',
+                    buttonAction: () {
+                      showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (context) => SingleChildScrollView(
+                                  child: Container(
+                                padding: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context)
+                                        .viewInsets
+                                        .bottom),
+                                child: SettingsScreen(),
+                              )));
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-          Center(
-            child: DelayedDisplay(
-              delay: Duration(milliseconds: 150),
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MenuButton(
-                  buttonText: 'SETTINGS',
-                  buttonAction: () {
-                    showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (context) => SingleChildScrollView(
-                            child: Container(
-                              padding: EdgeInsets.only(
-                                  bottom:
-                                  MediaQuery.of(context).viewInsets.bottom),
-                              child: SettingsScreen(),
-                            )));
-                  },
-                ),
-              ),
+            SizedBox(
+              height: 70.0,
             ),
-          ),
-          Center(
-            child: DelayedDisplay(
-              delay: Duration(milliseconds: 50),
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: MenuButton(
-                  buttonText: 'AD PLACE',
-                  buttonAction: () {
-                  },
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 30.0,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -256,89 +266,3 @@ _completedAlert(context) {
     ],
   ).show();
 }
-
-_userChallengeAlert(context) {
-  String _challengeText;
-  Alert(
-    context: context,
-    style: AlertStyle(
-      isCloseButton: false,
-      animationType: AnimationType.grow,
-      backgroundColor: mainColor,
-      titleStyle: TextStyle(
-          color: accentColor, fontSize: 30.0, fontWeight: FontWeight.bold),
-    ),
-    title: "Enter your text",
-    content: Container(
-      width: 300.0,
-      child: TextField(
-        scrollPadding: EdgeInsets.all(5.0),
-        autofocus: true,
-        cursorWidth: 1.0,
-        style: TextStyle(
-          color: accentColor,
-          fontSize: 30.0,
-          fontWeight: FontWeight.bold,
-        ),
-        keyboardType: TextInputType.multiline,
-        maxLines: null,
-        onChanged: (value) {
-          _challengeText = value;
-        },
-        onEditingComplete: () {
-          if (_challengeText != null) {
-            sourceText = _challengeText;
-            textMix.textMix();
-            Navigator.pushNamed(context, '/game');
-          } else {
-            Navigator.pop(context);
-          }
-        },
-      ),
-    ),
-//    desc: ".",
-    buttons: [
-      DialogButton(
-        child: Text(
-          "PLAY",
-          style: TextStyle(
-            color: mainColor,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        onPressed: () {
-          if (_challengeText != null) {
-            userChallenges.add(_challengeText);
-            _saveCurrentUserList();
-            sourceText = _challengeText;
-            textMix.textMix();
-            Navigator.pushNamed(context, '/game');
-          } else {
-            Navigator.pop(context);
-          }
-        },
-        color: accentColor,
-      ),
-    ],
-  ).show();
-}
-
-_saveCurrentUserList() async {
-  final prefs = await SharedPreferences.getInstance();
-  final key = 'userChallenge';
-  final savedList = userChallenges;
-  prefs.setStringList(key, savedList);
-}
-
-//_readContinue() async {
-//  final prefs = await SharedPreferences.getInstance();
-//  final key1 = 'continue_mix_key';
-//  final key2 = 'continue_source_key';
-//
-//  displayedText = prefs.getString(key1);
-//  displayedLetters = displayedText.split('');
-//
-//  sourceText = prefs.getString(key2);
-//  print(prefs.getString(key1));
-//}

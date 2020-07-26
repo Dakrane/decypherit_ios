@@ -34,7 +34,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 15.0,
           ),
           GestureDetector(
             onTap: () {
@@ -42,7 +42,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   context: context,
                   isScrollControlled: true,
                   builder: (context) => SingleChildScrollView(
-                      child: Container(
+                          child: Container(
                         padding: EdgeInsets.only(
                             bottom: MediaQuery.of(context).viewInsets.bottom),
                         child: ColorScreen(),
@@ -70,7 +70,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 10.0,
           ),
           GestureDetector(
             onTap: () {
@@ -85,7 +85,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     context: context,
                     isScrollControlled: true,
                     builder: (context) => SingleChildScrollView(
-                        child: Container(
+                            child: Container(
                           padding: EdgeInsets.only(
                               bottom: MediaQuery.of(context).viewInsets.bottom),
                           child: DeleteScreen(),
@@ -114,7 +114,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 10.0,
           ),
           GestureDetector(
             onTap: () {
@@ -122,7 +122,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   context: context,
                   isScrollControlled: true,
                   builder: (context) => SingleChildScrollView(
-                      child: Container(
+                          child: Container(
                         padding: EdgeInsets.only(
                             bottom: MediaQuery.of(context).viewInsets.bottom),
                         child: DifficultyScreen(),
@@ -150,7 +150,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 10.0,
           ),
           GestureDetector(
             onTap: () {
@@ -207,8 +207,4 @@ _deleteAlert(context) {
       ),
     ],
   ).show();
-}
-
-void restartApp(context) {
-  context.findAncestorStateOfType<_SettingsScreenState>().restartApp();
 }

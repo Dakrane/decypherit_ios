@@ -13,6 +13,8 @@ const appID = 'ca-app-pub-8186404993574241~1428996191';
 int mix = 6;
 int challengeNumber;
 
+bool continueVisible = false;
+
 const List<String> lowerLetters = [
   'a',
   'b',

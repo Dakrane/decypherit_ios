@@ -13,7 +13,7 @@ class ColorScreen extends StatefulWidget {
 class _ColorScreenState extends State<ColorScreen> {
   @override
   Widget build(BuildContext context) {
-    String _text = 'Choose your color palette';
+    String _text = 'CHOOSE YOUR COLOR';
     SystemChrome.setEnabledSystemUIOverlays([]);
 
     return Container(
@@ -30,11 +30,29 @@ class _ColorScreenState extends State<ColorScreen> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 30.0,
-              color: accentColor,
+              color: accentColor, fontWeight: FontWeight.bold,
             ),
           ),
           SizedBox(
-            height: 15.0,
+            height: 5.0,
+          ),
+          Divider(
+            color: accentColor,
+            height: 5.0,
+          ),
+          SizedBox(
+            height: 5.0,
+          ),
+          Text(
+            'M - MAIN  A - ACCENT',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20.0,
+              color: accentColor, fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 5.0,
           ),
           Container(
             height: 200.0,

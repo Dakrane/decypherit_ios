@@ -20,7 +20,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            'Choose items to delete:',
+            'DELETE CHALLENGE',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -38,32 +38,46 @@ class _DeleteScreenState extends State<DeleteScreen> {
                 itemBuilder: (context, int index) {
                   return new Column(
                     children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: Text(
-                              userChallenges[index],
-                              style: TextStyle(
-                                color: accentColor,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                      Container(
+                        decoration: BoxDecoration(
+                          color: accentColor,
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  userChallenges[index],
+                                  style: TextStyle(
+                                    color: mainColor,
+                                    fontSize: 20.0,
+//                                fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                          Checkbox(
-                            activeColor: accentColor,
-                            value: isChecked[index],
-                            onChanged: (checkboxState) {
-                              setState(() {
-                                isChecked[index] = checkboxState;
-                              });
-                            },
-                          ),
-                        ],
+                            Theme(
+                              data: ThemeData(
+                                unselectedWidgetColor: mainColor,
+                              ),
+                              child: Checkbox(
+                                activeColor: mainColor,
+                                checkColor: accentColor,
+                                value: isChecked[index],
+                                onChanged: (checkboxState) {
+                                  setState(() {
+                                    isChecked[index] = checkboxState;
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Divider(
-                        color: accentColor,
-                        height: 1.0,
+                      SizedBox(
+                        height: 5.0,
                       ),
                     ],
                   );
@@ -78,7 +92,6 @@ class _DeleteScreenState extends State<DeleteScreen> {
                 for (int d = userChallenges.length - 1; d >= 0; d--) {
                   if (isChecked[d] == true) {
                     userChallenges.removeAt(d);
-                    print('item #$d removed');
                   }
                 }
                 for (int i = 0; i < userChallenges.length; i++) {

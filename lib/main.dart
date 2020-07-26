@@ -5,13 +5,14 @@ import 'package:decypherit/screens/user_challenge_screen.dart';
 import 'package:decypherit/variables.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
+
+import 'components/get_challenges.dart';
+import 'components/local_challenges.dart';
 import 'screens/choosing_screen.dart';
 import 'screens/game_screen.dart';
 import 'screens/starting_screen.dart';
 import 'screens/user_choosing_screen.dart';
-import 'components/get_challenges.dart';
-import 'components/local_challenges.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 void main() {
   runApp(
@@ -21,7 +22,7 @@ void main() {
   );
 }
 
-//control line
+//control line v2
 class DecypherIt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
