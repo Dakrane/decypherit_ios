@@ -8,6 +8,7 @@ String buttonInput;
 String button1 = '';
 String button2 = '';
 String currChallengeCat;
+const appID = 'ca-app-pub-8186404993574241~1428996191';
 
 int mix = 6;
 int challengeNumber;

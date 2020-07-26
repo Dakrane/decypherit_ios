@@ -8,6 +8,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 class StartingScreen extends StatefulWidget {
   @override
@@ -19,6 +20,7 @@ class _StartingScreenState extends State<StartingScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
+    FirebaseAdMob.instance.initialize(appId: appID);
   }
 
   @override
@@ -31,7 +33,7 @@ class _StartingScreenState extends State<StartingScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Column(
               children: <Widget>[
                 Padding(
@@ -40,7 +42,6 @@ class _StartingScreenState extends State<StartingScreen> {
                     delay: Duration(milliseconds: 800),
                     child: GestureDetector(
                       onTap: () {
-//                        _rulesAlert(context);
                         showModalBottomSheet(
                             context: context,
                             isScrollControlled: true,
