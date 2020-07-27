@@ -3,10 +3,10 @@ import 'package:decypherit/screens/rules_screen.dart';
 import 'package:decypherit/screens/settings_screen.dart';
 import 'package:decypherit/variables.dart';
 import 'package:delayed_display/delayed_display.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-//import 'package:firebase_admob/firebase_admob.dart';
 
 class StartingScreen extends StatefulWidget {
   @override
@@ -14,35 +14,38 @@ class StartingScreen extends StatefulWidget {
 }
 
 class _StartingScreenState extends State<StartingScreen> {
+  BannerAd _bannerAd;
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
     checkContinue();
-//    FirebaseAdMob.instance.initialize(appId: appID);
+    FirebaseAdMob.instance.initialize(appId: appID);
+    _bannerAd = myBanner
+      ..load()
+      ..show(
+        anchorType: AnchorType.bottom,
+      );
+    print(displayedText);
+    print(sourceText);
   }
 
-//  static MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-//    keywords: <String>['flutterio', 'beautiful apps'],
-//    contentUrl: 'https://flutter.io',
-//    birthday: DateTime.now(),
-//    childDirected: false,
-//    designedForFamilies: false,
-//    gender: MobileAdGender.male, // or MobileAdGender.female, MobileAdGender.unknown
-//    testDevices: <String>[], // Android emulators are considered test devices
-//  );
-//
-//  BannerAd myBanner = BannerAd(
-//    // Replace the testAdUnitId with an ad unit id from the AdMob dash.
-//    // https://developers.google.com/admob/android/test-ads
-//    // https://developers.google.com/admob/ios/test-ads
-//    adUnitId: 'ca-app-pub-3940256099942544/6300978111',
-//    size: AdSize.smartBanner,
-//    targetingInfo: targetingInfo,
+  BannerAd myBanner = BannerAd(
+    adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+    size: AdSize.banner,
+    targetingInfo: targetingInfo,
 //    listener: (MobileAdEvent event) {
 //      print("BannerAd event is $event");
 //    },
-//  );
+  );
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
+    print(
+        'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX fucking disposed');
+  }
 
   void checkContinue() {
     if (displayedText == null) {
@@ -145,7 +148,6 @@ class _StartingScreenState extends State<StartingScreen> {
                   child: MenuButton(
                     buttonText: 'PLAY',
                     buttonAction: () {
-//                    Navigator.pushNam/ed(context, '/intro');
                       Navigator.pushNamed(context, '/choose');
                     },
                   ),

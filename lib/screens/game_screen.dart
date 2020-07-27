@@ -1,6 +1,7 @@
 import 'package:decypherit/components/button.dart';
 import 'package:decypherit/components/text_mix.dart';
 import 'package:decypherit/variables.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -20,6 +21,13 @@ class _GameScreenState extends State<GameScreen> {
     super.initState();
     defaultButtonColor();
     _stopWatchTimer.onExecute.add(StopWatchExecute.start);
+    FirebaseAdMob.instance.initialize(appId: appID);
+    myBanner
+      ..load()
+      ..show(
+        anchorOffset: 81.0,
+        anchorType: AnchorType.top,
+      );
   }
 
   final StopWatchTimer _stopWatchTimer = StopWatchTimer();
@@ -28,6 +36,15 @@ class _GameScreenState extends State<GameScreen> {
     super.dispose();
     await _stopWatchTimer.dispose();
   }
+
+  BannerAd myBanner = BannerAd(
+    adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+    size: AdSize.banner,
+    targetingInfo: targetingInfo,
+    listener: (MobileAdEvent event) {
+      print("BannerAd event is $event");
+    },
+  );
 
   @override
   Widget build(BuildContext context) {

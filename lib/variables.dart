@@ -1,3 +1,4 @@
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 
 String title = 'decypher it';
@@ -244,3 +245,14 @@ defaultButtonColor() {
   buttonColorM = accentColor;
   textColorM = mainColor;
 }
+
+MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+  keywords: <String>['flutterio', 'beautiful apps'],
+  contentUrl: 'https://flutter.io',
+  birthday: DateTime.now(),
+  childDirected: false,
+  designedForFamilies: false,
+  gender: MobileAdGender
+      .unknown, // or MobileAdGender.female, MobileAdGender.unknown
+  testDevices: <String>[], // Android emulators are considered test devices
+);

@@ -41,7 +41,7 @@ dependencies:
   animated_text_kit: ^2.2.0
   pit_slider_carousel: ^0.1.0
   delayed_display: ^1.0.3
-#  firebase_admob: ^0.9.3+2
+  firebase_admob: ^0.9.3+2
 
 dev_dependencies:
   flutter_test:

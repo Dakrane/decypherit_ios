@@ -169,6 +169,7 @@ class ChoosingScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20.0, 0, 0, 30.0),
                           child: FloatingActionButton(
+                            elevation: 5.0,
                             heroTag: 'back',
                             onPressed: () {
                               Navigator.pop(context);
@@ -187,6 +188,7 @@ class ChoosingScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 20.0, 30.0),
                           child: FloatingActionButton(
+                            elevation: 5.0,
                             heroTag: 'add',
                             onPressed: () {
                               _userChallengeAlert(context);

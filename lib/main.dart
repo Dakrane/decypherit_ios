@@ -1,7 +1,6 @@
 import 'package:decypherit/screens/difficulty_screen.dart';
 import 'package:decypherit/screens/intro_screen.dart';
 import 'package:decypherit/screens/rules_screen.dart';
-import 'package:decypherit/screens/user_challenge_screen.dart';
 import 'package:decypherit/variables.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,6 @@ import 'components/local_challenges.dart';
 import 'screens/choosing_screen.dart';
 import 'screens/game_screen.dart';
 import 'screens/starting_screen.dart';
-import 'screens/user_choosing_screen.dart';
 
 void main() {
   runApp(
@@ -22,7 +20,7 @@ void main() {
   );
 }
 
-//control line v2
+//control line v4
 class DecypherIt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -33,8 +31,6 @@ class DecypherIt extends StatelessWidget {
         '/game': (context) => GameScreen(),
         '/choose': (context) => ChoosingScreen(),
         '/difficulty': (context) => DifficultyScreen(),
-        '/user': (context) => UserChallengeScreen(),
-        '/userchoice': (context) => UserChoosing(),
         '/test': (context) => ChallengeList(),
         '/local': (context) => LocalChallengeList(),
         '/rules': (context) => RulesScreen(),
