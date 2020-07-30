@@ -1,6 +1,7 @@
 import 'package:decypherit/screens/color_screen.dart';
 import 'package:decypherit/screens/delete_screen.dart';
 import 'package:decypherit/screens/difficulty_screen.dart';
+import 'package:decypherit/screens/rules_screen.dart';
 import 'package:decypherit/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,6 +36,42 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           SizedBox(
             height: 15.0,
+          ),
+          GestureDetector(
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (context) => SingleChildScrollView(
+                          child: Container(
+                        padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom),
+                        child: RulesScreen(),
+                      )));
+            },
+            child: Container(
+              height: 50.0,
+              decoration: BoxDecoration(
+                color: accentColor,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Text(
+                    'RULES',
+                    style: TextStyle(
+                      color: mainColor,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
           ),
           GestureDetector(
             onTap: () {

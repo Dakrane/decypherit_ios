@@ -83,16 +83,18 @@ Widget _buildCarousel() {
   List<CarouselItem> list = [];
   List<String> rules = [
     'Welcome to the game \'decypher it\', where you need to figure out what sentence was encrypted to win the game.',
-    'In this game some letters in a sentence are switched. Amount of letters depends on your difficulty. ',
-        'You can lower the difficulty and re-mix the letters in the top-right of the screen of the game, if needed.',
-    'Point of the game is to come to the source sentence through switching letters.',
-    'You can continue your previous game if you\'ve already started solving a challenge.',
+    'In this game some letters in a sentence are switched. Amount of letters depends on your difficulty.',
+    'You need to come to the source sentence through switching letters.',
+    'You can lower the difficulty and re-mix the letters by pressing arrow down above the keyboard.',
+    'You can save a challenge for later or just quit to main menu by pressing save button.',
+    '"Continue" will bring you to your last challenge that you saved.',
     'You can choose a challenge from categorised pre-loaded challenges or your own added before challenges.',
     'You can play with friends and create your own sentences for your friends to guess.',
-    'In the settings menu you can change difficulty, delete your own challenges that you don\'t need anymore or change color palette.',
+    'To do so, you need to press the + button on the choosing screen.',
+    'In the settings menu you can change difficulty, delete your own challenges that you don\'t need anymore or change color theme.',
     'Have fun!',
   ];
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < 11; i++) {
     list.add(
       CarouselItem(
         Container(
@@ -119,7 +121,7 @@ Widget _buildCarousel() {
 
   return new PitSliderCarousel(
       height: 150.0,
-      maxDotsIndicator: 8,
+      maxDotsIndicator: 11,
       dotSize: 8.0,
       activeDotColor: accentColor,
       dotColor: Colors.blueGrey,

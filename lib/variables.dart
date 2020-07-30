@@ -10,6 +10,8 @@ String button1 = '';
 String button2 = '';
 String currChallengeCat;
 const appID = 'ca-app-pub-8186404993574241~1428996191';
+const adID1 = 'ca-app-pub-8186404993574241/8956202238';
+const adID2 = 'ca-app-pub-8186404993574241/4485478332';
 
 int mix = 6;
 int challengeNumber;
@@ -80,8 +82,8 @@ List<String> categoryName = [
 ];
 List<bool> isChecked = [];
 
-Color mainColor = Color(0xFF006266);
-Color accentColor = Color(0xFFecf0f1);
+Color mainColor = Colors.black;
+Color accentColor = Color(0xFF01AD73);
 
 //Color mainColor = Color(0xFF303952);
 //Color accentColor = Color(0xFFf5cd79);
@@ -247,8 +249,15 @@ defaultButtonColor() {
 }
 
 MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-  keywords: <String>['flutterio', 'beautiful apps'],
-  contentUrl: 'https://flutter.io',
+  keywords: <String>[
+    'game',
+    'games',
+    'puzzle',
+    'words',
+    'question',
+    'smart',
+  ], //Game, Puzzle, Words, Smart, Question
+//  contentUrl: 'https://flutter.io',
   birthday: DateTime.now(),
   childDirected: false,
   designedForFamilies: false,

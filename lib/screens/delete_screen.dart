@@ -32,7 +32,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
             height: 15.0,
           ),
           Container(
-            height: 400.0,
+            height: 300.0,
             child: ListView.builder(
                 itemCount: userChallenges.length,
                 itemBuilder: (context, int index) {

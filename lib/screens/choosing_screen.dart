@@ -15,17 +15,6 @@ class ChoosingScreen extends StatelessWidget {
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-//          floatingActionButton: FloatingActionButton(
-//            onPressed: () {
-//              Navigator.pop(context);
-//            },
-//            backgroundColor: accentColor,
-//            child: Icon(
-//              Icons.arrow_back,
-//              color: mainColor,
-//            ),
-//          ),
-//          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           resizeToAvoidBottomPadding: false,
           appBar: ShiftingTabBar(
             color: mainColor,
@@ -168,17 +157,30 @@ class ChoosingScreen extends StatelessWidget {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.fromLTRB(20.0, 0, 0, 30.0),
-                          child: FloatingActionButton(
-                            elevation: 5.0,
-                            heroTag: 'back',
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            backgroundColor: accentColor,
-                            child: Icon(
-                              Icons.arrow_back,
+                          child: Container(
+                            decoration: BoxDecoration(
                               color: mainColor,
-                              size: 35.0,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: FloatingActionButton(
+                                elevation: 5.0,
+                                heroTag: 'back',
+                                onPressed: () {
+//                                  startingBannerAd.load();
+//                                  startingBannerAd.show();
+//                                  Navigator.of(context).pushNamedAndRemoveUntil(
+//                                      '/', (Route<dynamic> route) => false);
+                                  Navigator.pushNamed(context, '/');
+                                },
+                                backgroundColor: accentColor,
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: mainColor,
+                                  size: 35.0,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -187,17 +189,26 @@ class ChoosingScreen extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 20.0, 30.0),
-                          child: FloatingActionButton(
-                            elevation: 5.0,
-                            heroTag: 'add',
-                            onPressed: () {
-                              _userChallengeAlert(context);
-                            },
-                            backgroundColor: accentColor,
-                            child: Icon(
-                              Icons.add,
+                          child: Container(
+                            decoration: BoxDecoration(
                               color: mainColor,
-                              size: 35.0,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: FloatingActionButton(
+                                elevation: 5.0,
+                                heroTag: 'add',
+                                onPressed: () {
+                                  _userChallengeAlert(context);
+                                },
+                                backgroundColor: accentColor,
+                                child: Icon(
+                                  Icons.add,
+                                  color: mainColor,
+                                  size: 35.0,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -259,7 +270,7 @@ _userChallengeAlert(context) {
     ),
     title: "Enter your text",
     content: Container(
-      width: 300.0,
+      width: 350.0,
       child: TextField(
         scrollPadding: EdgeInsets.all(5.0),
         autofocus: true,

@@ -37,11 +37,11 @@ dependencies:
   shifting_tabbar: ^0.3.1
   flutter_fluid_slider: ^1.0.3
   rflutter_alert: ^1.0.3
-  stop_watch_timer: ^0.4.0
   animated_text_kit: ^2.2.0
   pit_slider_carousel: ^0.1.0
   delayed_display: ^1.0.3
   firebase_admob: ^0.9.3+2
+  auto_size_text: ^2.1.0
 
 dev_dependencies:
   flutter_test:

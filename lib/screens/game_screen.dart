@@ -1,12 +1,13 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:decypherit/components/button.dart';
 import 'package:decypherit/components/text_mix.dart';
 import 'package:decypherit/variables.dart';
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 class GameScreen extends StatefulWidget {
   @override
@@ -20,135 +21,130 @@ class _GameScreenState extends State<GameScreen> {
   void initState() {
     super.initState();
     defaultButtonColor();
-    _stopWatchTimer.onExecute.add(StopWatchExecute.start);
     FirebaseAdMob.instance.initialize(appId: appID);
-    myBanner
-      ..load()
-      ..show(
-        anchorOffset: 81.0,
-        anchorType: AnchorType.top,
-      );
+    gameBannerAd = buildBanner()..load();
   }
 
-  final StopWatchTimer _stopWatchTimer = StopWatchTimer();
+  BannerAd gameBannerAd;
+
+  BannerAd buildBanner() {
+    return BannerAd(
+        adUnitId: BannerAd.testAdUnitId,
+        size: AdSize.fullBanner,
+        listener: (MobileAdEvent event) {
+          if (event == MobileAdEvent.loaded) {
+            gameBannerAd..show(anchorType: AnchorType.top);
+          } else if (event == MobileAdEvent.failedToLoad) {
+            gameBannerAd..load();
+          } else {
+            print(event);
+          }
+        });
+  }
 
   void dispose() async {
+    gameBannerAd?.dispose();
     super.dispose();
-    await _stopWatchTimer.dispose();
   }
-
-  BannerAd myBanner = BannerAd(
-    adUnitId: 'ca-app-pub-3940256099942544/6300978111',
-    size: AdSize.banner,
-    targetingInfo: targetingInfo,
-    listener: (MobileAdEvent event) {
-      print("BannerAd event is $event");
-    },
-  );
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.arrow_downward,
-              color: accentColor,
-            ),
-            onPressed: () {
-              _stopWatchTimer.onExecute.add(StopWatchExecute.reset);
-              if (mix > 1) {
-                mix--;
-                setState(() {
-                  _stopWatchTimer.onExecute.add(StopWatchExecute.start);
-                  textMixer.textMix();
-                });
-              } else {
-                _mixAlert(context);
-                setState(() {
-                  _stopWatchTimer.onExecute.add(StopWatchExecute.start);
-                  textMixer.textMix();
-                });
-              }
-            },
-          ),
-        ],
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: Icon(
-                Icons.save,
-                color: accentColor,
-              ),
-              onPressed: () {
-                _saveMixedText();
-                _saveSourceText();
-                Navigator.pushNamed(context, '/');
-              },
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            );
-          },
-        ),
-        backgroundColor: mainColor,
-        centerTitle: true,
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 0),
-          child: StreamBuilder<int>(
-            stream: _stopWatchTimer.rawTime,
-            initialData: _stopWatchTimer.rawTime.value,
-            builder: (context, snap) {
-              final value = snap.data;
-              final displayTime = StopWatchTimer.getDisplayTime(value);
-              return Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      displayTime,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: accentColor,
-                          fontFamily: 'Helvetica',
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
-      ),
       backgroundColor: mainColor,
       body: Column(
         children: <Widget>[
           Expanded(
+            child: SizedBox(
+              height: 90.0,
+            ),
+          ),
+          Expanded(
             flex: 6,
-            child: Center(
-              child: Text(
-                displayedText,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: accentColor,
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.bold),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Center(
+                child: AutoSizeText(
+                  displayedText,
+                  textAlign: TextAlign.center,
+                  maxLines: 7,
+                  style: TextStyle(
+                      color: accentColor,
+                      fontSize: 40.0,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),
-          Container(
-            height: 230.0,
-            color: mainColor,
-            child: Container(
-              padding: EdgeInsets.all(20.0),
-              decoration: BoxDecoration(
-                color: mainColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20.0),
-                  topRight: Radius.circular(20.0),
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 0, 0, 0),
+                child: GestureDetector(
+                  onTap: () {
+                    _saveMixedText();
+                    _saveSourceText();
+                    try {
+                      gameBannerAd?.dispose();
+                      gameBannerAd = null;
+                    } catch (ex) {
+                      print("banner dispose error $ex");
+                    }
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/', (Route<dynamic> route) => false);
+                  },
+                  child: Container(
+                    height: 40.0,
+                    width: 40.0,
+                    color: mainColor,
+                    child: Icon(
+                      Icons.save,
+                      color: accentColor,
+                      size: 30.0,
+                    ),
+                  ),
                 ),
               ),
+              Expanded(
+                child: Container(),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 15.0, 0),
+                child: GestureDetector(
+                  onTap: () {
+                    if (mix > 1) {
+                      mix--;
+                      setState(() {
+                        textMixer.textMix();
+                      });
+                    } else {
+                      _mixAlert(context);
+                      setState(() {
+                        textMixer.textMix();
+                      });
+                    }
+                  },
+                  child: Container(
+                    height: 40.0,
+                    width: 40.0,
+                    color: mainColor,
+                    child: Icon(
+                      Icons.arrow_downward,
+                      color: accentColor,
+                      size: 30.0,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            flex: 4,
+            child: Container(
+//              height: 230.0,
+              padding: EdgeInsets.all(20.0),
+              color: mainColor,
               child: Column(
                 children: <Widget>[
                   Expanded(

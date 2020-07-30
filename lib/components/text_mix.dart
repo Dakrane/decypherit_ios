@@ -1,9 +1,9 @@
-import 'package:decypherit/variables.dart';
 import 'dart:math';
+
+import 'package:decypherit/variables.dart';
 
 class TextMix {
   void textMix() {
-//    textColor = mainColor;
     displayedLetters = sourceText.split('');
     String noSpace = sourceText.toLowerCase();
     noSpace = noSpace.replaceAll(' ', '');
@@ -14,7 +14,18 @@ class TextMix {
     noSpace = noSpace.replaceAll(';', '');
     noSpace = noSpace.replaceAll('!', '');
     noSpace = noSpace.replaceAll('?', '');
+    noSpace = noSpace.replaceAll('\\', '');
+    noSpace = noSpace.replaceAll('/', '');
+    noSpace = noSpace.replaceAll('&', '');
+    noSpace = noSpace.replaceAll('(', '');
+    noSpace = noSpace.replaceAll(')', '');
+    noSpace = noSpace.replaceAll('_', '');
+    noSpace = noSpace.replaceAll('-', '');
+    noSpace = noSpace.replaceAll('+', '');
+    noSpace = noSpace.replaceAll('=', '');
+    noSpace = noSpace.replaceAll('*', '');
     noSpace = noSpace.replaceAll('\'', '');
+    noSpace = noSpace.replaceAll('"', '');
     noSpace = noSpace.replaceAll('0', '');
     noSpace = noSpace.replaceAll('1', '');
     noSpace = noSpace.replaceAll('2', '');
@@ -29,7 +40,7 @@ class TextMix {
 
     for (int m = 1; m <= mix; m++) {
       String randomString1 =
-      sourceLetters[Random().nextInt(sourceLetters.length)];
+          sourceLetters[Random().nextInt(sourceLetters.length)];
       String randomString2 = lowerLetters[Random().nextInt(24)];
 
       for (int a = 0; a < displayedLetters.length; a++) {
